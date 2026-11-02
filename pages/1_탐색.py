@@ -43,12 +43,14 @@ numeric_columns = [
 for col in numeric_columns:
     data[col] = pd.to_numeric(data[col], errors="coerce")
 
-valid_stroke = data[data["stroke"].isin([0, 1])].copy()
-
+# 뇌졸중 여부 열을 먼저 생성
 data["뇌졸중 여부"] = data["stroke"].map({
     0: "뇌졸중 없음",
     1: "뇌졸중 있음"
 })
+
+# 그다음 분석할 데이터 추출
+valid_stroke = data[data["stroke"].isin([0, 1])].copy()
 
 
 # --------------------------------------------------
